@@ -12,8 +12,8 @@ const gameSchema = new Schema({
     move: [{ type: Schema.Types.ObjectId, ref: 'Move' }],
     state: {
         type: String,
-        enum: ['LOBBY', 'IN_PROGRESS', 'COMPLETED'],
-        default: 'LOBBY',
+        enum: ['IN_PROGRESS', 'COMPLETED'],
+        default: 'IN_PROGRESS',
     },
 })
 

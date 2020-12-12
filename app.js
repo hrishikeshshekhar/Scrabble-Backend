@@ -6,6 +6,7 @@ const socketIo = require('socket.io')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const env = require('./utils/env')
+const { rootRouter } = require('./routes/rootRouter')
 
 // Connecting to the database
 mongoose.connect(`${env.mongo_url}`, {
@@ -101,13 +102,6 @@ io.on('connection', (socket) => {
     })
 })
 
-// An endpoint to check if the room name already exists
-app.get('/roomExists', (req, res) => {
-    const { roomName } = req.query
-    if (roomCounts.has(roomName) && roomCounts.get(roomName) > 0) {
-        return res.json(true).status(200)
-    }
-    return res.json(false).status(200)
-})
+app.use('/', rootRouter)
 
 server.listen(env.port, () => console.log(`Listening on port ${env.port}`))
