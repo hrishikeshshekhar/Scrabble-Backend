@@ -7,6 +7,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const env = require('./utils/env')
 const { rootRouter } = require('./routes/rootRouter')
+const { roomRouter } = require('./routes/roomRouter')
+const { gameRouter } = require('./routes/gameRouter')
 
 // Connecting to the database
 mongoose.connect(`${env.mongo_url}`, {
@@ -103,5 +105,7 @@ io.on('connection', (socket) => {
 })
 
 app.use('/', rootRouter)
+app.use('/room', roomRouter)
+app.use('/game', gameRouter)
 
 server.listen(env.port, () => console.log(`Listening on port ${env.port}`))

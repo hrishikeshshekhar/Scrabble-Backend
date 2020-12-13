@@ -5,4 +5,6 @@ const gameController = require('../controllers/game.controller.js')
 
 gameRouter.get('/initialize', gameController.initialize)
 
-module.exports = {}
+module.exports = {
+    gameRouter,
+}

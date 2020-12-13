@@ -1,14 +1,15 @@
 const mongoose = require('mongoose')
 
 const { Schema } = mongoose
+const Model = mongoose.model
 
-const gameSchema = new Schema({
+const gameSchema = Schema({
     tileState: String,
     boardState: String,
     player: [String],
     spectator: [String],
-    socketId: String,
     turn: Number,
+    room: { type: Schema.Types.ObjectId, ref: 'Room' },
     move: [{ type: Schema.Types.ObjectId, ref: 'Move' }],
     state: {
         type: String,
@@ -17,4 +18,6 @@ const gameSchema = new Schema({
     },
 })
 
-module.exports = mongoose.model('Game', gameSchema)
+module.exports = {
+    Game: Model('Game', gameSchema),
+}

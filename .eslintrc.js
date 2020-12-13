@@ -8,5 +8,8 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 12,
     },
-    rules: {},
+    plugins: ['mongodb'],
+    rules: {
+        'no-underscore-dangle': 'off',
+    },
 }

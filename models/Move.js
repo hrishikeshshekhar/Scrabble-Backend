@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 
 const { Schema } = mongoose
+const Model = mongoose.model
 
-const moveSchema = new Schema({
+const moveSchema = Schema({
     user: String,
     word: [
         {
@@ -14,4 +15,6 @@ const moveSchema = new Schema({
     score: Number,
 })
 
-module.exports = mongoose.model('Move', moveSchema)
+module.exports = {
+    Move: Model('Move', moveSchema),
+}
